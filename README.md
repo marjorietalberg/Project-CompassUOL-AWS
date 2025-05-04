@@ -1,12 +1,18 @@
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/e46be03e-7677-4e8b-accc-c6b8d4cddf7b" alt="Image" width="1200" height="auto"></td>
+    <td>
+      <h1>🚀 Projeto: Deploy de WordPress com AWS</h1>
+      <div align="center">
+        <a href="https://skillicons.dev">
+          <img src="https://skillicons.dev/icons?i=aws,linux,docker,wordpress,mysql" alt="My Skills" />
+        </a>
+      </div>
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=aws,linux,docker,wordpress,mysql" alt="My Skills" />
-  </a>
-</div>
 
-
-#  🚀 Projeto: Deploy de WordPress com AWS 
 
 ## Descrição do Projeto
 
