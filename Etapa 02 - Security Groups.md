@@ -1,6 +1,22 @@
-<img src="https://img.icons8.com/?size=100&id=33039&format=png&color=000000" alt="Icon" width="100">
 
-# 🔐 Etapa 2 – Criação dos Security Groups (Grupos de Segurança)
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" style="padding-right: 10px;">
+        <a href="https://skillicons.dev">
+          <img src="https://skillicons.dev/icons?i=aws" alt="AWS Skills" width="150">
+        </a>
+      </td>
+      <td align="left" style="vertical-align: middle;">
+        <h1 style="display:inline; color:#FF4C4C;">🔐 Etapa 2  </h1>
+        <h1 style="display:inline; color:#1E90FF;">Criação dos Security Groups (Grupos de Segurança)</h1>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
 ## 🎯 Objetivo:
 Controlar o tráfego de entrada e saída entre:
 
