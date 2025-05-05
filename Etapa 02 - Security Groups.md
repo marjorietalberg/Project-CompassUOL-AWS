@@ -1,3 +1,5 @@
+<img src="https://img.icons8.com/?size=100&id=33039&format=png&color=000000" alt="Icon" width="100">
+
 # 🔐 Etapa 2 – Criação dos Security Groups (Grupos de Segurança)
 ## 🎯 Objetivo:
 Controlar o tráfego de entrada e saída entre:
@@ -29,11 +31,27 @@ EFS (sistema de arquivos compartilhado)
 
 <img src="https://github.com/user-attachments/assets/605e8f10-2216-43aa-81bd-985c28737591" alt="Image 4" width="700">
 
-<img src="https://github.com/user-attachments/assets/20a8a6e2-6925-4869-8e95-61d678f86b8f" alt="Image 3" width="700">
 
-<img src="https://github.com/user-attachments/assets/979c5a57-3942-4fea-8c6b-95a3a747c063" alt="Image 2" width="700">
+<img src="https://github.com/user-attachments/assets/8971a23e-af85-4453-84e0-99e78ce4c417" alt="Image 1" width="700">
+<img src="https://github.com/user-attachments/assets/5e687c2a-75f6-4ca6-9ebd-3ce35bb82d7e" alt="Image 2" width="700">
 
-<img src="https://github.com/user-attachments/assets/69a8e24b-6231-4b77-8239-c8637f6834d5" alt="Image 1" width="700">
+### 📥 Regras de entrada (Inbound):
+
+Porta 80 ou 8080 – APENAS do Security Group do Load Balancer (sg-loadbalancer-wp)
+
+Porta 2049 – do SG do EFS (sg-efs) – para montagem NFS
+
+Porta 22 (SSH) – opcional, apenas se precisar acessar via terminal, de IP fixo (ex: seu IP local)
+
+📤 Regras de saída (Outbound):
+
+Todas as portas liberadas (0.0.0.0/0) – padrão
+
+Opcionalmente, restringir saída apenas para:
+
+SG do RDS (sg-rds-mysql)
+
+Internet (via NAT Gateway se em subnet privada)
 
 ---
 
@@ -51,6 +69,19 @@ EFS (sistema de arquivos compartilhado)
 <img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
 <img src="https://github.com/user-attachments/assets/b30969c5-a59a-4bc3-bd27-164861022795" alt="Image 2" width="700">
 <img src="https://github.com/user-attachments/assets/8bb86f99-811f-404a-82be-09818bdbfb42" alt="Image 3" width="700">
+
+### Recebe o tráfego da internet
+Função: expõe o Load Balancer para acesso público (HTTP)
+
+📥 Regras de entrada (Inbound):
+
+Porta 80 (HTTP) – de 0.0.0.0/0 (acesso público)
+
+Porta 443 (HTTPS) – opcional, se usar SSL
+
+📤 Regras de saída (Outbound):
+
+Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
 
 
 
@@ -78,7 +109,15 @@ EFS (sistema de arquivos compartilhado)
 <img src="https://github.com/user-attachments/assets/bb3b5a37-9f98-4830-bee7-073214ed14fb" alt="Image 2" width="700">
 <img src="https://github.com/user-attachments/assets/668e327f-713c-4187-a54c-28e050c7708b" alt="Image 1" width="700">
 
+### Função: protege o banco de dados
 
+📥 Regras de entrada (Inbound):
+
+Porta 3306 (MySQL) – APENAS do SG da instância EC2 (sg-wordpress-ec2)
+
+📤 Regras de saída (Outbound):
+
+Todas as portas liberadas – padrão
 
 ---
 # 🔐 4. (Opcional) Security Group: efs-wordpress
@@ -98,7 +137,15 @@ EFS (sistema de arquivos compartilhado)
 <img src="https://github.com/user-attachments/assets/d3d1a7c4-59db-4330-9023-99940e58882e" alt="Image 1" width="700">
 
 
+### Função: permite montagem de volume NFS
 
+📥 Regras de entrada (Inbound):
+
+Porta 2049 (NFS) – APENAS do SG da instância EC2
+
+📤 Regras de saída (Outbound):
+
+Todas as portas liberadas – padrão
 
 
 ---
