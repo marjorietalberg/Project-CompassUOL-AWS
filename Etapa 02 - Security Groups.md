@@ -12,26 +12,7 @@ EFS (sistema de arquivos compartilhado)
 
 ---
 
-## 🔐 1. Security Group: loadbalancer-wp
-
-| Tipo                            | Protocolo | Porta | Origem      |
-| ------------------------------- | --------- | ----- | ----------- |
-| HTTP                            | TCP       | 80    | `0.0.0.0/0` |
-| HTTPS (se usar SSL futuramente) | TCP       | 443   | `0.0.0.0/0` |
-
-| Tipo              | Protocolo | Porta | Destino              |
-| ----------------- | --------- | ----- | -------------------- |
-| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
-
-<img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
-<img src="https://github.com/user-attachments/assets/b30969c5-a59a-4bc3-bd27-164861022795" alt="Image 2" width="700">
-<img src="https://github.com/user-attachments/assets/8bb86f99-811f-404a-82be-09818bdbfb42" alt="Image 3" width="700">
-
-
-
----
-
-## 🔐 2. Security Group: wordpress-ec2
+# 🔐 1. Security Group: wordpress-ec2
 
 | Tipo         | Protocolo | Porta | Origem                                                    |
 | ------------ | --------- | ----- | --------------------------------------------------------- |
@@ -54,10 +35,32 @@ EFS (sistema de arquivos compartilhado)
 
 <img src="https://github.com/user-attachments/assets/69a8e24b-6231-4b77-8239-c8637f6834d5" alt="Image 1" width="700">
 
+---
+
+# 🔐 2. Security Group: loadbalancer-wp
+
+| Tipo                            | Protocolo | Porta | Origem      |
+| ------------------------------- | --------- | ----- | ----------- |
+| HTTP                            | TCP       | 80    | `0.0.0.0/0` |
+| HTTPS (se usar SSL futuramente) | TCP       | 443   | `0.0.0.0/0` |
+
+| Tipo              | Protocolo | Porta | Destino              |
+| ----------------- | --------- | ----- | -------------------- |
+| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
+
+<img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
+<img src="https://github.com/user-attachments/assets/b30969c5-a59a-4bc3-bd27-164861022795" alt="Image 2" width="700">
+<img src="https://github.com/user-attachments/assets/8bb86f99-811f-404a-82be-09818bdbfb42" alt="Image 3" width="700">
+
+
 
 ---
 
-## 🔐 3. Security Group: rds-mysql
+
+
+
+
+# 🔐 3. Security Group: rds-mysql
 
 ### ✅ Entrada (Inbound):
 
@@ -71,5 +74,28 @@ EFS (sistema de arquivos compartilhado)
 | ----------------- | --------- | ----- | -------------------- |
 | Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
 
+<img src="https://github.com/user-attachments/assets/4eeae423-5d50-48cf-b650-2a5bb3201095" alt="Image 3" width="700">
+<img src="https://github.com/user-attachments/assets/bb3b5a37-9f98-4830-bee7-073214ed14fb" alt="Image 2" width="700">
+<img src="https://github.com/user-attachments/assets/668e327f-713c-4187-a54c-28e050c7708b" alt="Image 1" width="700">
+
+
+
+---
+# 🔐 4. (Opcional) Security Group: efs-wordpress
+
+### ✅ Entrada (Inbound):
+| Tipo | Protocolo | Porta | Origem          |
+| ---- | --------- | ----- | --------------- |
+| NFS  | TCP       | 2049  | `wordpress-ec2` |
+
+### ✅ Saída (Outbound):
+| Tipo              | Protocolo | Porta | Destino              |
+| ----------------- | --------- | ----- | -------------------- |
+| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
+
+
+
+
+---
 
 
