@@ -1,0 +1,2 @@
+# 🚀 Configuração da EC2 
+
