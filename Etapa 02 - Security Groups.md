@@ -93,6 +93,11 @@ EFS (sistema de arquivos compartilhado)
 | ----------------- | --------- | ----- | -------------------- |
 | Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
 
+<img src="https://github.com/user-attachments/assets/de21eb8b-d1d1-4e7e-bb69-f4b7be5b5e3f" alt="Image 3" width="700">
+<img src="https://github.com/user-attachments/assets/b852c3ef-0333-4000-89e1-6d11131fb034" alt="Image 2" width="700">
+<img src="https://github.com/user-attachments/assets/d3d1a7c4-59db-4330-9023-99940e58882e" alt="Image 1" width="700">
+
+
 
 
 
