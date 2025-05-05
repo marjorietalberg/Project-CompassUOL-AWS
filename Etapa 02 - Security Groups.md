@@ -11,17 +11,7 @@ RDS (MySQL)
 EFS (sistema de arquivos compartilhado)
 
 ---
-⚙️ 2. SG - Load Balancer
 
-| Tipo           | Protocolo | Porta | Origem                            |
-| -------------- | --------- | ----- | --------------------------------- |
-| HTTP           | TCP       | 80    | `sg-loadbalancer`                 |
-| HTTPS          | TCP       | 443   | `sg-loadbalancer` (se usar SSL)   |
-| SSH (opcional) | TCP       | 22    | Seu IP local (ex: `177.x.x.x/32`) |
-| EFS            | TCP       | 2049  | `sg-efs`                          |
-| MySQL          | TCP       | 3306  | `sg-rds`                          |
-
----
 ## 🔐 1. Security Group: loadbalancer-wp
 
 | Tipo                            | Protocolo | Porta | Origem      |
@@ -32,6 +22,10 @@ EFS (sistema de arquivos compartilhado)
 | Tipo              | Protocolo | Porta | Destino              |
 | ----------------- | --------- | ----- | -------------------- |
 | Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
+
+<img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
+<img src="https://github.com/user-attachments/assets/b30969c5-a59a-4bc3-bd27-164861022795" alt="Image 2" width="700">
+<img src="https://github.com/user-attachments/assets/8bb86f99-811f-404a-82be-09818bdbfb42" alt="Image 3" width="700">
 
 
 
@@ -61,6 +55,21 @@ EFS (sistema de arquivos compartilhado)
 <img src="https://github.com/user-attachments/assets/69a8e24b-6231-4b77-8239-c8637f6834d5" alt="Image 1" width="700">
 
 
+---
+
+## 🔐 3. Security Group: rds-mysql
+
+### ✅ Entrada (Inbound):
+
+| Tipo         | Protocolo | Porta | Origem          |
+| ------------ | --------- | ----- | --------------- |
+| MySQL/Aurora | TCP       | 3306  | `wordpress-ec2` |
+
+### ✅ Saída (Outbound):
+
+| Tipo              | Protocolo | Porta | Destino              |
+| ----------------- | --------- | ----- | -------------------- |
+| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
 
 
 
