@@ -50,4 +50,17 @@ EFS (sistema de arquivos compartilhado)
 | Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
 
 
+<img src="https://github.com/user-attachments/assets/432d84d7-154f-420c-8681-9ebf89efba36" alt="Image 5" width="700">
+
+<img src="https://github.com/user-attachments/assets/605e8f10-2216-43aa-81bd-985c28737591" alt="Image 4" width="700">
+
+<img src="https://github.com/user-attachments/assets/20a8a6e2-6925-4869-8e95-61d678f86b8f" alt="Image 3" width="700">
+
+<img src="https://github.com/user-attachments/assets/979c5a57-3942-4fea-8c6b-95a3a747c063" alt="Image 2" width="700">
+
+<img src="https://github.com/user-attachments/assets/69a8e24b-6231-4b77-8239-c8637f6834d5" alt="Image 1" width="700">
+
+
+
+
 
