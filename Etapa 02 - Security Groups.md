@@ -1,23 +1,5 @@
 
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" style="padding-right: 10px;">
-        <a href="https://skillicons.dev">
-          <img src="https://skillicons.dev/icons?i=aws" alt="AWS Skills" width="150">
-        </a>
-      </td>
-      <td align="left" style="vertical-align: middle;">
-        <h1 style="display:inline; color:#FF4C4C;">🔐 Etapa 2  </h1>
-        <h1 style="display:inline; color:#1E90FF;">Criação dos Security Groups (Grupos de Segurança)</h1>
-      </td>
-    </tr>
-  </table>
-</div>
-
-
-## 🎯 Objetivo:
+## Objetivo:
 Controlar o tráfego de entrada e saída entre:
 
 EC2 (WordPress)
@@ -47,8 +29,8 @@ EFS (sistema de arquivos compartilhado)
 | Tipo | Porta | Origem         | Motivo                             |
 |------|-------|----------------|------------------------------------|
 | SSH  | 22    | Seu IP (ou Bastion) | Receber tráfego do Load Balancer |
-| HTTP | 80    | lb_SG          | Acesso para manutenção             |
-| NFS  | 2049  | efs_SG         | Montagem do EFS                    |
+| HTTP | 80    | lb             | Acesso para manutenção             |
+| NFS  | 2049  | efs            | Montagem do EFS                    |
 
 
 
@@ -62,12 +44,13 @@ EFS (sistema de arquivos compartilhado)
 
 
 
-
-
-
-
-
 # 🔐 2. Security Group: loadbalancer-wp
+
+<img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
+<img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem" width="700">
+
+<img src="https://github.com/user-attachments/assets/e823ebca-f6e4-4d0e-882d-7eb0cd8e464c" alt="Imagem" width="700">
+
 ### 📥 INBOUND RULES
 | Tipo | Porta | Origem     | Motivo                          |
 |------|-------|------------|---------------------------------|
@@ -78,13 +61,9 @@ EFS (sistema de arquivos compartilhado)
 
 | Tipo | Porta | Destino | Motivo                                |
 |------|-------|---------|----------------------------------------|
-| HTTP | 80    | ec2_SG  | Encaminhar requisições para EC2s      |
+| HTTP | 80    | ec2     | Encaminhar para EC2s      |
 
-<img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
-<img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem" width="700">
-
-<img src="https://github.com/user-attachments/assets/e823ebca-f6e4-4d0e-882d-7eb0cd8e464c" alt="Imagem">
-
+---
 
 ### Recebe o tráfego da internet
 Função: expõe o Load Balancer para acesso público (HTTP)
@@ -105,43 +84,25 @@ Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 🔐 3. Security Group: rds-mysql
 
-### ✅ Entrada (Inbound):
-
-| Tipo         | Protocolo | Porta | Origem          |
-| ------------ | --------- | ----- | --------------- |
-| MySQL/Aurora | TCP       | 3306  | `wordpress-ec2` |
-
-### ✅ Saída (Outbound):
-
-| Tipo        | Porta | Origem   | Motivo                       |
-|-------------|-------|----------|------------------------------|
-| MySQL/Aurora| 3306  | ec2      | Permitir acesso do WordPress |
 
 <img src="https://github.com/user-attachments/assets/4eeae423-5d50-48cf-b650-2a5bb3201095" alt="Image 3" width="700">
-<img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem">
+<img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem" width="700">
 
 <img src="https://github.com/user-attachments/assets/3b9d0a27-8ca3-49be-ac11-7adec1038326" alt="Imagem" width="700">
 
+### 📥 INBOUND RULES
+
+| Tipo          | Porta | Origem  | Motivo                         |
+|---------------|-------|---------|--------------------------------|
+| MySQL/Aurora  | 3306  | ec2_SG  | Permitir acesso do WordPress  |
+
+### 📤 OUTBOUND RULES
+
+| Tipo          | Porta | Destino | Motivo                                                   |
+|---------------|-------|---------|----------------------------------------------------------|
+| MySQL/Aurora  | 3306  | ec2_SG  | Permitir que o banco de dados responda às requisições    |
 
 
 ### Função: protege o banco de dados
@@ -152,21 +113,25 @@ Porta 3306 (MySQL) – APENAS do SG da instância EC2 (sg-wordpress-ec2)
 
 
 ---
-# 🔐 4. (Opcional) Security Group: efs-wordpress
 
-### ✅ Entrada (Inbound):
-| Tipo | Protocolo | Porta | Origem          |
-| ---- | --------- | ----- | --------------- |
-| NFS  | TCP       | 2049  | `wordpress-ec2` |
+# 🔐 4. Security Group: efs-wordpress
 
-### ✅ Saída (Outbound):
-| Tipo              | Protocolo | Porta | Destino              |
-| ----------------- | --------- | ----- | -------------------- |
-| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
 
 <img src="https://github.com/user-attachments/assets/de21eb8b-d1d1-4e7e-bb69-f4b7be5b5e3f" alt="Image 3" width="700">
 <img src="https://github.com/user-attachments/assets/b852c3ef-0333-4000-89e1-6d11131fb034" alt="Image 2" width="700">
-<img src="https://github.com/user-attachments/assets/d3d1a7c4-59db-4330-9023-99940e58882e" alt="Image 1" width="700">
+<img src="https://github.com/user-attachments/assets/752db9dd-14d2-4ebc-89c6-c106509a08d4" alt="Imagem" width="700">
+
+### 📥 INBOUND RULES
+
+| Tipo | Porta | Origem | Motivo                        |
+|------|-------|--------|-------------------------------|
+| NFS  | 2049  | ec2 | Permitir montagem via NFS     |
+
+### 📤 OUTBOUND RULES
+
+| Tipo | Porta | Destino | Motivo                    |
+|------|-------|---------|---------------------------|
+| NFS  | 2049  | ec2  | Comunicação  |
 
 
 ### Função: permite montagem de volume NFS
