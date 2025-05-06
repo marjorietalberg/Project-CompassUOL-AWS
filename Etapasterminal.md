@@ -14,6 +14,8 @@ Para garantir que a sua EC2 está se comunicando corretamente com o EFS, vamos v
 nslookup fs-063444ada6f544931.efs.us-east-1.amazonaws.com
 
 ```
+<img src="https://github.com/user-attachments/assets/6805028e-89c1-44b6-96e5-9e5207e0a2eb" alt="Image">
+
 Isso deve retornar o endereço IP correspondente ao seu sistema de arquivos EFS. Caso contrário, há algo errado com a configuração de rede, e você pode precisar revisar as regras de segurança ou de rede.
 
 ---
