@@ -28,13 +28,19 @@ Clique em Load balancers
 
 #### Selecione a subnet pública da us-east-1b
 
+
+<img src="https://github.com/user-attachments/assets/aa8c9f79-2948-491f-abe5-bde65cf358f3" alt="Image 12" width="700">
+
+
+
 <img src="https://github.com/user-attachments/assets/df6584f7-b648-4392-ac08-3c297ebd0f9e" alt="Image 3" width="700">
+
+
 
 
 <img src="https://github.com/user-attachments/assets/66c45fa8-03fb-474e-9da6-96444f212075" alt="Image 2" width="700">
 
 <img src="https://github.com/user-attachments/assets/4c33f4c2-4bb4-4791-baf6-63f0dc770b48" alt="Image 1" width="700">
-
 
 
 <img src="https://github.com/user-attachments/assets/aa8c9f79-2948-491f-abe5-bde65cf358f3" alt="Image 12" width="700">
