@@ -38,38 +38,42 @@ EFS (sistema de arquivos compartilhado)
 
 
 <img src="https://github.com/user-attachments/assets/8971a23e-af85-4453-84e0-99e78ce4c417" alt="Image 1" width="700">
-<img src="https://github.com/user-attachments/assets/5e687c2a-75f6-4ca6-9ebd-3ce35bb82d7e" alt="Image 2" width="700">
+
+
+  <img src="https://github.com/user-attachments/assets/a0eb2c2f-811e-4ab9-b9ea-a6018fb5d628" alt="Imagem 2" width="700">
+
+  <img src="https://github.com/user-attachments/assets/f2e1a931-cf46-4b98-b72f-c242c11afc97" alt="Imagem 1" width="700">
+
 
 ### 📥 Regras de entrada (Inbound):
+| Tipo | Porta | Origem         | Motivo                             |
+|------|-------|----------------|------------------------------------|
+| SSH  | 22    | Seu IP (ou Bastion) | Receber tráfego do Load Balancer |
+| HTTP | 80    | lb_SG          | Acesso para manutenção             |
+| NFS  | 2049  | efs_SG         | Montagem do EFS                    |
 
-Porta 80 ou 8080 – APENAS do Security Group do Load Balancer (sg-loadbalancer-wp)
 
-Porta 2049 – do SG do EFS (sg-efs) – para montagem NFS
 
-Porta 22 (SSH) – opcional, apenas se precisar acessar via terminal, de IP fixo (ex: seu IP local)
+### 📤 Regras de saída (Outbound):
 
-📤 Regras de saída (Outbound):
-
-Todas as portas liberadas (0.0.0.0/0) – padrão
-
-Opcionalmente, restringir saída apenas para:
-
-SG do RDS (sg-rds-mysql)
-
-Internet (via NAT Gateway se em subnet privada)
+| Tipo        | Porta | Destino               | Motivo                                             |
+|-------------|-------|------------------------|----------------------------------------------------|
+| All traffic | All   | 0.0.0.0/0 (via NAT)    | Baixar pacotes, updates, conectar ao RDS, etc     |
 
 ---
 
 # 🔐 2. Security Group: loadbalancer-wp
+### 📥 INBOUND RULES
+| Tipo | Porta | Origem     | Motivo                          |
+|------|-------|------------|---------------------------------|
+| HTTP | 80    | 0.0.0.0/0  | Receber tráfego da internet     |
 
-| Tipo                            | Protocolo | Porta | Origem      |
-| ------------------------------- | --------- | ----- | ----------- |
-| HTTP                            | TCP       | 80    | `0.0.0.0/0` |
-| HTTPS (se usar SSL futuramente) | TCP       | 443   | `0.0.0.0/0` |
 
-| Tipo              | Protocolo | Porta | Destino              |
-| ----------------- | --------- | ----- | -------------------- |
-| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
+### 📤 OUTBOUND RULES
+
+| Tipo | Porta | Destino | Motivo                                |
+|------|-------|---------|----------------------------------------|
+| HTTP | 80    | ec2     | Encaminhar para EC2                    |
 
 <img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
 <img src="https://github.com/user-attachments/assets/b30969c5-a59a-4bc3-bd27-164861022795" alt="Image 2" width="700">
@@ -106,9 +110,9 @@ Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
 
 ### ✅ Saída (Outbound):
 
-| Tipo              | Protocolo | Porta | Destino              |
-| ----------------- | --------- | ----- | -------------------- |
-| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
+| Tipo        | Porta | Origem   | Motivo                       |
+|-------------|-------|----------|------------------------------|
+| MySQL/Aurora| 3306  | ec2      | Permitir acesso do WordPress |
 
 <img src="https://github.com/user-attachments/assets/4eeae423-5d50-48cf-b650-2a5bb3201095" alt="Image 3" width="700">
 <img src="https://github.com/user-attachments/assets/bb3b5a37-9f98-4830-bee7-073214ed14fb" alt="Image 2" width="700">
