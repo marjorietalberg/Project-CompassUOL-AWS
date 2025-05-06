@@ -30,17 +30,6 @@ EFS (sistema de arquivos compartilhado)
 
 ---
 
-# 🔐 1. Security Group: wordpress-ec2
-
-| Tipo         | Protocolo | Porta | Origem                                                    |
-| ------------ | --------- | ----- | --------------------------------------------------------- |
-| HTTP         | TCP       | 80    | `loadbalancer-wp`                                         |
-| NFS          | TCP       | 2049  | `efs-estaticos-wp` *(se tiver)*                           |
-| MySQL/Aurora | TCP       | 3306  | `rds-mysql` (se usar como origem para health check/teste) |
-
-| Tipo              | Protocolo | Porta | Destino              |
-| ----------------- | --------- | ----- | -------------------- |
-| Todos os tráfegos | -         | -     | `0.0.0.0/0` (padrão) |
 
 
 <img src="https://github.com/user-attachments/assets/432d84d7-154f-420c-8681-9ebf89efba36" alt="Image 5" width="700">
