@@ -30,8 +30,6 @@ EFS (sistema de arquivos compartilhado)
 
 ---
 
-
-
 <img src="https://github.com/user-attachments/assets/432d84d7-154f-420c-8681-9ebf89efba36" alt="Image 5" width="700">
 
 <img src="https://github.com/user-attachments/assets/605e8f10-2216-43aa-81bd-985c28737591" alt="Image 4" width="700">
@@ -62,6 +60,13 @@ EFS (sistema de arquivos compartilhado)
 
 ---
 
+
+
+
+
+
+
+
 # 🔐 2. Security Group: loadbalancer-wp
 ### 📥 INBOUND RULES
 | Tipo | Porta | Origem     | Motivo                          |
@@ -73,7 +78,7 @@ EFS (sistema de arquivos compartilhado)
 
 | Tipo | Porta | Destino | Motivo                                |
 |------|-------|---------|----------------------------------------|
-| HTTP | 80    | ec2     | Encaminhar para EC2                    |
+| HTTP | 80    | ec2_SG  | Encaminhar requisições para EC2s      |
 
 <img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
 <img src="https://github.com/user-attachments/assets/b30969c5-a59a-4bc3-bd27-164861022795" alt="Image 2" width="700">
@@ -100,6 +105,22 @@ Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 🔐 3. Security Group: rds-mysql
 
 ### ✅ Entrada (Inbound):
@@ -116,7 +137,8 @@ Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
 
 <img src="https://github.com/user-attachments/assets/4eeae423-5d50-48cf-b650-2a5bb3201095" alt="Image 3" width="700">
 <img src="https://github.com/user-attachments/assets/bb3b5a37-9f98-4830-bee7-073214ed14fb" alt="Image 2" width="700">
-<img src="https://github.com/user-attachments/assets/668e327f-713c-4187-a54c-28e050c7708b" alt="Image 1" width="700">
+<img src="https://github.com/user-attachments/assets/ce547400-2410-4c58-82ff-81ec4c7f33cf" alt="Imagem" width="700">
+
 
 ### Função: protege o banco de dados
 
@@ -124,9 +146,6 @@ Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
 
 Porta 3306 (MySQL) – APENAS do SG da instância EC2 (sg-wordpress-ec2)
 
-📤 Regras de saída (Outbound):
-
-Todas as portas liberadas – padrão
 
 ---
 # 🔐 4. (Opcional) Security Group: efs-wordpress
