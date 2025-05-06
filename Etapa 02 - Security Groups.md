@@ -83,7 +83,8 @@ EFS (sistema de arquivos compartilhado)
 <img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
 <img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem" width="700">
 
-<img src="https://github.com/user-attachments/assets/8bb86f99-811f-404a-82be-09818bdbfb42" alt="Image 3" width="700">
+<img src="https://github.com/user-attachments/assets/e823ebca-f6e4-4d0e-882d-7eb0cd8e464c" alt="Imagem">
+
 
 ### Recebe o tráfego da internet
 Função: expõe o Load Balancer para acesso público (HTTP)
