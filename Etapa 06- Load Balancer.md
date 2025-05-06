@@ -43,6 +43,5 @@ Clique em Load balancers
 <img src="https://github.com/user-attachments/assets/4c33f4c2-4bb4-4791-baf6-63f0dc770b48" alt="Image 1" width="700">
 
 
-<img src="https://github.com/user-attachments/assets/aa8c9f79-2948-491f-abe5-bde65cf358f3" alt="Image 12" width="700">
 
 
