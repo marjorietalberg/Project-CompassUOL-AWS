@@ -1,4 +1,4 @@
-# 🌐 Etapa 1 – Criação da VPC Personalizada
+# 🌐 Etapa 01 – Criação da VPC Personalizada
 ## 🛠️ Objetivo
 Criar uma VPC personalizada com sub-redes públicas e privadas, tabela de rotas, gateway de internet e NAT Gateway, preparada para suportar:
 
