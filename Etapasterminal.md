@@ -8,6 +8,16 @@ ssh -i "chaveprojeto.pem" ubuntu@3.92.15.199
 💡 Substitua chaveprojeto.pem e o IP de acordo como está o seu , esté é um exemplo 
 
 # ✅ Etapas : montar o EFS na EC2 e rodar o WordPress
+Passo 1: Verificar a conectividade com o EFS
+Para garantir que a sua EC2 está se comunicando corretamente com o EFS, vamos verificar a resolução do nome DNS do EFS:
+```bash
+nslookup fs-063444ada6f544931.efs.us-east-1.amazonaws.com
+
+```
+Isso deve retornar o endereço IP correspondente ao seu sistema de arquivos EFS. Caso contrário, há algo errado com a configuração de rede, e você pode precisar revisar as regras de segurança ou de rede.
+
+---
+
 🔧 1. Montar o EFS na sua instância EC2
 No terminal da sua EC2 (já conectada):
 
