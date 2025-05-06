@@ -81,7 +81,8 @@ EFS (sistema de arquivos compartilhado)
 | HTTP | 80    | ec2_SG  | Encaminhar requisições para EC2s      |
 
 <img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
-<img src="https://github.com/user-attachments/assets/b30969c5-a59a-4bc3-bd27-164861022795" alt="Image 2" width="700">
+<img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem" width="700">
+
 <img src="https://github.com/user-attachments/assets/8bb86f99-811f-404a-82be-09818bdbfb42" alt="Image 3" width="700">
 
 ### Recebe o tráfego da internet
