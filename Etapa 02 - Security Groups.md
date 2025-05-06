@@ -136,7 +136,8 @@ Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
 | MySQL/Aurora| 3306  | ec2      | Permitir acesso do WordPress |
 
 <img src="https://github.com/user-attachments/assets/4eeae423-5d50-48cf-b650-2a5bb3201095" alt="Image 3" width="700">
-<img src="https://github.com/user-attachments/assets/bb3b5a37-9f98-4830-bee7-073214ed14fb" alt="Image 2" width="700">
+<img src="https://github.com/user-attachments/assets/3b9d0a27-8ca3-49be-ac11-7adec1038326" alt="Imagem" width="700">
+
 <img src="https://github.com/user-attachments/assets/ce547400-2410-4c58-82ff-81ec4c7f33cf" alt="Imagem" width="700">
 
 
