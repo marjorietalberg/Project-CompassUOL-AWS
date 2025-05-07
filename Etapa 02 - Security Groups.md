@@ -1,150 +1,97 @@
+# 🔐 Etapa: Criação dos Security Groups
+No projeto, serão criados 4 Security Groups (SGs), cada um responsável por isolar e proteger um componente específico da arquitetura:
 
-## Objetivo:
-Controlar o tráfego de entrada e saída entre:
+> 🖥️ Instâncias EC2
 
-EC2 (WordPress)
+> 🗄️ Banco de Dados (RDS MySQL)
 
-Load Balancer
+> 📁 Elastic File System (EFS)
 
-RDS (MySQL)
+> 🌐 Load Balancer (CLB)
 
-EFS (sistema de arquivos compartilhado)
+---
+1. **Abra o painel principal da AWS** e pesquise por **Security Groups** na barra de pesquisa.
+2. **Clique em "Security Groups"** na seção de rede.
+3. **Clique em "Create Security Group"** no canto superior direito.
+
+<img src="https://github.com/user-attachments/assets/d2eb7d39-6a47-4e12-8d17-529c4ed31a5f" alt="Image">
+
+<img src="https://github.com/user-attachments/assets/bb2b40e6-b916-45c4-91b0-0af7a17a321f" alt="Image">
+
+---
+### 📝 Observações
+
+- **Nomes Personalizados**: Você tem a liberdade de escolher os nomes que desejar para os Security Groups. No entanto, os exemplos que estou documentando são os que utilizei para manter a consistência ao longo do projeto.
+  
+---
+
+### 🔐 SG 1 - **Instâncias EC2**
+
+Este é o Security Group destinado a controlar o tráfego de rede para as **Instâncias EC2** do seu projeto.
+
+#### Etapas para Criar o SG das Instâncias EC2:
+
+1. **Nome do Security Group**: Defina o nome como `ec2-sg` (ou o nome que preferir).
+2. **Descrição**: Insira uma descrição simples como `ec2`.
+3. **VPC**: Selecione a **VPC** que foi criada nas etapas anteriores do projeto, garantindo que todas estarão dentro da mesma rede .
+
+
+<img src="https://github.com/user-attachments/assets/7c57d5d2-b3be-42e6-bb31-25ebd7f72448" alt="Image">
+
+---
+### 🔐 SG 2 - **Banco de Dados (RDS)**
+
+Este é o **Security Group** destinado ao seu **Banco de Dados RDS**, que irá controlar o tráfego de rede entre o RDS e as instâncias EC2, garantindo a comunicação segura.
+
+#### Etapas para Criar o SG do Banco de Dados:
+
+1. **Nome do Security Group**: Defina o nome como `rds-SG` (ou o nome que preferir).
+2. **Descrição**: Insira uma descrição simples como `banco de dados`.
+3. **VPC**: Selecione a **VPC** criada nas etapas anteriores para garantir que o Security Group esteja associado à mesma rede.
+4. **Clique em**: `Create security group` para finalizar a criação do Security Group.
+<img src="https://github.com/user-attachments/assets/9cacb32f-45ec-4b02-bbcc-647b47355a6a" alt="Image">
+
+---
+### 🔐 SG 3 - **Elastic File System (EFS)**
+
+Este **Security Group** é responsável pelo controle de acesso à rede do **Elastic File System (EFS)**, garantindo que o tráfego entre os containers e o EFS esteja protegido.
+
+
+
+#### Etapas para Criar o SG do Elastic File System:
+
+1. **Nome do Security Group**: Defina o nome como `efs-sg` (ou o nome que preferir).
+2. **Descrição**: Insira uma descrição como `efs`.
+3. **VPC**: Selecione a **VPC** que foi criada nas etapas anteriores, garantindo que o Security Group esteja na mesma rede.
+4. **Clique em**: `Create security group` para concluir a criação do Security Group.
+
+
+<img src="https://github.com/user-attachments/assets/34215fad-eb42-479a-aba1-63f0537cd17d" alt="Image">
 
 ---
 
-<img src="https://github.com/user-attachments/assets/432d84d7-154f-420c-8681-9ebf89efba36" alt="Image 5" width="700">
+### 🔐 SG 4 - **Load Balancer (LB)**
 
-<img src="https://github.com/user-attachments/assets/605e8f10-2216-43aa-81bd-985c28737591" alt="Image 4" width="700">
+Este **Security Group** será responsável por controlar o tráfego de rede do **Load Balancer (LB)**, gerenciando a distribuição de requisições entre as instâncias EC2 e garantindo a segurança do tráfego que chega ao seu serviço.
 
+#### Etapas para Criar o SG do Load Balancer:
 
-<img src="https://github.com/user-attachments/assets/8971a23e-af85-4453-84e0-99e78ce4c417" alt="Image 1" width="700">
+1. **Nome do Security Group**: Defina o nome como `lb-sg` (ou o nome que preferir).
+2. **Descrição**: Insira uma descrição como `-Load-Balancer`.
+3. **VPC**: Selecione a **VPC** criada nas etapas anteriores para garantir que o Security Group esteja associado à mesma rede.
+4. **Clique em**: `Create security group` para finalizar a criação do Security Group.
 
-
-  <img src="https://github.com/user-attachments/assets/a0eb2c2f-811e-4ab9-b9ea-a6018fb5d628" alt="Imagem 2" width="700">
-
-  <img src="https://github.com/user-attachments/assets/f2e1a931-cf46-4b98-b72f-c242c11afc97" alt="Imagem 1" width="700">
-
-
-### 📥 Regras de entrada (Inbound):
-| Tipo | Porta | Origem         | Motivo                             |
-|------|-------|----------------|------------------------------------|
-| SSH  | 22    | Seu IP (ou Bastion) | Receber tráfego do Load Balancer |
-| HTTP | 80    | lb             | Acesso para manutenção             |
-| NFS  | 2049  | efs            | Montagem do EFS                    |
+🔒 **Importante**: Este Security Group controlará o tráfego que chega ao seu Load Balancer, permitindo que o tráfego da internet seja redirecionado para as instâncias EC2 corretas, de acordo com as regras configuradas.
 
 
-
-### 📤 Regras de saída (Outbound):
-
-| Tipo        | Porta | Destino               | Motivo                                             |
-|-------------|-------|------------------------|----------------------------------------------------|
-| All traffic | All   | 0.0.0.0/0 (via NAT)    | Baixar pacotes, updates, conectar ao RDS, etc     |
-
----
-
-
-
-# 🔐 2. Security Group: loadbalancer-wp
-
-<img src="https://github.com/user-attachments/assets/c3a3b5d4-51c1-4ed5-a5a6-b24b58aa481d" alt="Image 1" width="700">
-<img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem" width="700">
-
-<img src="https://github.com/user-attachments/assets/e823ebca-f6e4-4d0e-882d-7eb0cd8e464c" alt="Imagem" width="700">
-
-### 📥 INBOUND RULES
-| Tipo | Porta | Origem     | Motivo                          |
-|------|-------|------------|---------------------------------|
-| HTTP | 80    | 0.0.0.0/0  | Receber tráfego da internet     |
-
-
-### 📤 OUTBOUND RULES
-
-| Tipo | Porta | Destino | Motivo                                |
-|------|-------|---------|----------------------------------------|
-| HTTP | 80    | ec2     | Encaminhar para EC2s      |
-
----
-
-### Recebe o tráfego da internet
-Função: expõe o Load Balancer para acesso público (HTTP)
-
-📥 Regras de entrada (Inbound):
-
-Porta 80 (HTTP) – de 0.0.0.0/0 (acesso público)
-
-Porta 443 (HTTPS) – opcional, se usar SSL
-
-📤 Regras de saída (Outbound):
-
-Todas as portas liberadas (0.0.0.0/0) – padrão do AWS SG
-
-
-
----
-
-
-
-# 🔐 3. Security Group: rds-mysql
-
-
-<img src="https://github.com/user-attachments/assets/4eeae423-5d50-48cf-b650-2a5bb3201095" alt="Image 3" width="700">
-<img src="https://github.com/user-attachments/assets/9c245968-46fe-460c-a262-88f83ab6161a" alt="Imagem" width="700">
-
-<img src="https://github.com/user-attachments/assets/3b9d0a27-8ca3-49be-ac11-7adec1038326" alt="Imagem" width="700">
-
-### 📥 INBOUND RULES
-
-| Tipo          | Porta | Origem  | Motivo                         |
-|---------------|-------|---------|--------------------------------|
-| MySQL/Aurora  | 3306  | ec2_SG  | Permitir acesso do WordPress  |
-
-### 📤 OUTBOUND RULES
-
-| Tipo          | Porta | Destino | Motivo                                                   |
-|---------------|-------|---------|----------------------------------------------------------|
-| MySQL/Aurora  | 3306  | ec2_SG  | Permitir que o banco de dados responda às requisições    |
-
-
-### Função: protege o banco de dados
-
-📥 Regras de entrada (Inbound):
-
-Porta 3306 (MySQL) – APENAS do SG da instância EC2 (sg-wordpress-ec2)
-
-
----
-
-# 🔐 4. Security Group: efs-wordpress
-
-
-<img src="https://github.com/user-attachments/assets/de21eb8b-d1d1-4e7e-bb69-f4b7be5b5e3f" alt="Image 3" width="700">
-<img src="https://github.com/user-attachments/assets/b852c3ef-0333-4000-89e1-6d11131fb034" alt="Image 2" width="700">
-<img src="https://github.com/user-attachments/assets/752db9dd-14d2-4ebc-89c6-c106509a08d4" alt="Imagem" width="700">
-
-### 📥 INBOUND RULES
-
-| Tipo | Porta | Origem | Motivo                        |
-|------|-------|--------|-------------------------------|
-| NFS  | 2049  | ec2 | Permitir montagem via NFS     |
-
-### 📤 OUTBOUND RULES
-
-| Tipo | Porta | Destino | Motivo                    |
-|------|-------|---------|---------------------------|
-| NFS  | 2049  | ec2  | Comunicação  |
-
-
-### Função: permite montagem de volume NFS
-
-📥 Regras de entrada (Inbound):
-
-Porta 2049 (NFS) – APENAS do SG da instância EC2
-
-📤 Regras de saída (Outbound):
-
-Todas as portas liberadas – padrão
+<img src="https://github.com/user-attachments/assets/d2f92fed-7fb0-49ff-99d7-1bb6662ba0d9" alt="Image">
 
 
 ---
 
 
+
+
+
+
+<img src="https://github.com/user-attachments/assets/08626e35-f284-4895-a75e-8017fe75ebd5" alt="Image">
