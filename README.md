@@ -66,14 +66,6 @@ Criar pontos de montagem nas zonas de disponibilidade usadas.
 Associar o EFS ao VPC usado pela EC2.
 
 ---
-## 5. 📂 Montagem do EFS na Instância EC2
-
----
-
-## 6. ⚙️ Configuração do docker-compose ou Dockerfile para WordPress
-Criar um arquivo docker-compose.yml com as variáveis do banco e montagem do volume EFS:
-
----
 
 ## 7. 🚀 Deploy do WordPress com Conexão ao RDS e Volume EFS
 
