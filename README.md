@@ -5,7 +5,12 @@
       <h1>Projeto: Deploy de WordPress com AWS</h1>
       <div align="center">
         <a href="https://skillicons.dev">
-          <img src="https://skillicons.dev/icons?i=aws,docker,wordpress,mysql,linux" alt="My Skills" />
+          <img src="https://skillicons.dev/icons?i=aws,docker,wordpress,mysql,linux" alt="My Skills" 
+            <p align="center">
+  <br>
+    <br>      
+  <img src="https://github.com/user-attachments/assets/79a2e995-a1be-4192-9ded-771004ef7417" width="200">
+</p>
         </a>
       </div>
     </td>
@@ -97,3 +102,8 @@ Acessar a URL do Load Balancer.
 Confirmar o carregamento da tela de instalação ou login do WordPress.
 
 Verificar persistência de dados (testar volume EFS e banco RDS).
+
+<p align="center">
+  <br>
+  <img src="https://github.com/user-attachments/assets/79a2e995-a1be-4192-9ded-771004ef7417" width="350">
+</p>
