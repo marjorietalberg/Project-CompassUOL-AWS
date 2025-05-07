@@ -89,9 +89,96 @@ Este **Security Group** será responsável por controlar o tráfego de rede do *
 
 ---
 
-
-
-
-
+## 🔍 Visualizando seus Security Groups criados
 
 <img src="https://github.com/user-attachments/assets/08626e35-f284-4895-a75e-8017fe75ebd5" alt="Image">
+
+---
+## ⚙️ Criação de SGs (Parte 9) – Configurando Regras
+
+### ✳️ Inbound Rules:
+
+1. No painel do Security Group selecionado, clique em **"Edit inbound rules"**.
+2. Aqui você irá definir **quais portas/protocolos estão autorizados a entrar**
+
+   <img src="https://github.com/user-attachments/assets/49c99c4a-90e6-4bce-a08a-4b9d50423ee8" alt="Image">
+
+---
+## 🔐 Security Group: `ec2-sg` – Instâncias EC2 (WordPress - Subnet Privada)
+
+### 📥 INBOUND RULES
+
+| Tipo | Porta | Origem   | Motivo                          |
+|------|-------|----------|---------------------------------|
+| SSH  | 22    | Seu IP (ou Bastion) | Acesso para manutenção         |
+| HTTP | 80    | lb-sg   | Receber tráfego do Load Balancer |
+| NFS  | 2049  | efs-sg  | Montagem do EFS                  |
+
+<img src="https://github.com/user-attachments/assets/56d0f2df-8e30-46f5-85f3-2727cfcc19eb" alt="Image">
+
+### 📤 OUTBOUND RULES
+
+| Tipo        | Porta | Destino     | Motivo                                                                 |
+|-------------|-------|-------------|------------------------------------------------------------------------|
+| All traffic | All   | 0.0.0.0/0 (via NAT) | Permitir atualizações, instalação de pacotes e conexão com serviços como RDS |
+
+<img src="https://github.com/user-attachments/assets/ec682e0a-4a18-4e58-8021-e512b495208b" alt="Image">
+
+---
+### 2.  (RDS - Banco de Dados - Subnet Privada)
+
+#### 📥 INBOUND RULES
+
+| Tipo           | Porta | Origem  | Motivo                           |
+|----------------|-------|---------|----------------------------------|
+| MySQL/Aurora   | 3306  | ec2-sg  | Permitir acesso do WordPress     |
+
+<img src="https://github.com/user-attachments/assets/690e4df3-dfda-45fc-b2c2-c64df88b366a" alt="Image">
+
+#### 📤 OUTBOUND RULES
+
+| Tipo           | Porta | Destino | Motivo                                                  |
+|----------------|-------|---------|----------------------------------------------------------|
+| MySQL/Aurora   | 3306  | ec2-sg | Responder requisições (por boas práticas, mesmo sendo stateful) |
+
+<img src="https://github.com/user-attachments/assets/4a16aada-1c36-4536-82a9-e343d3632363" alt="Image">
+
+
+---
+### 3. `efs-sg` (EFS - Subnet Privada)
+
+#### 📥 INBOUND RULES
+
+| Tipo | Porta | Origem  | Motivo                        |
+|------|-------|---------|-------------------------------|
+| NFS  | 2049  | ec2-sg  | Permitir montagem via NFS     |
+
+<img src="https://github.com/user-attachments/assets/108fd751-7432-489f-b0be-b40ddcf0e277" alt="Image">
+
+#### 📤 OUTBOUND RULES
+
+| Tipo | Porta | Destino | Motivo                |
+|------|-------|---------|-----------------------|
+| NFS  | 2049  | ec2-sg  | Comunicação bidirecional |
+
+<img src="https://github.com/user-attachments/assets/648b01ab-3a08-447f-a97a-c9462f5a65f6" alt="Image">
+
+---
+### 4. `lb_SG` (Classic Load Balancer - Subnet Pública)
+
+#### 📥 INBOUND RULES
+
+| Tipo | Porta | Origem   | Motivo                     |
+|------|-------|----------|----------------------------|
+| HTTP | 80    | 0.0.0.0/0 | Receber tráfego da internet |
+
+<img src="https://github.com/user-attachments/assets/1e785b39-9f83-43e1-8880-eafd946d33a6" alt="Image">
+
+#### 📤 OUTBOUND RULES
+
+| Tipo | Porta | Destino  | Motivo                           |
+|------|-------|----------|----------------------------------|
+| HTTP | 80    | ec2-sg   | Encaminhar requisições para EC2s |
+
+
+<img src="https://github.com/user-attachments/assets/8413427b-761b-49b1-a656-d9952b74c15e" alt="Image">
