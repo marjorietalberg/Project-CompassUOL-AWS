@@ -52,21 +52,37 @@ O Amazon EFS é um sistema de arquivos escalável, elástico e totalmente gerenc
 
 <img src="https://github.com/user-attachments/assets/0dece95f-21e1-46a9-b2f2-231cbf0f3572" alt="Image 1">
 
- ### Configuração da Rede para o EFS
-Importante: Certifique-se de selecionar apenas subnets privadas neste processo.
+---
+### Criação do EFS (parte 5)
 
-Escolha a VPC previamente criada.
+1. **Selecione as subnets privadas**:
+   - **Selecione a VPC criada anteriormente**: Escolha a VPC que foi configurada nas etapas anteriores.
+   
+2. **Selecione as Availability Zones (AZs)**:
+   - **Selecione us-east-1a** e **us-east-1b**.
 
-Para a Zona de Disponibilidade us-east-1a:
+3. **Selecione as subnets privadas**:
+   - **Selecione a subnet privada da us-east-1a**: Escolha a subnet privada na AZ us-east-1a.
+   - **Selecione a subnet privada da us-east-1b**: Escolha a subnet privada na AZ us-east-1b.
 
-Selecione a subnet privada correspondente.
+4. **Escolha o Security Group do EFS**:
+   - Selecione o **Security Group do EFS**: `efs_SG`.
 
-Atribua o Security Group do EFS: efs.
+5. **Clique em "Next"** para continuar a configuração.
+<img src="https://github.com/user-attachments/assets/c5b64129-b108-4df0-8791-454c8ce4172b" alt="Image">
 
-Para a Zona de Disponibilidade us-east-1b:
+---
+### Na página que abrir, só clique em **next**
+<img src="https://github.com/user-attachments/assets/930b191a-60ca-4046-a95d-c58198ebeecb" alt="Image">
 
-Selecione a subnet privada correspondente.
+---
 
-Atribua novamente o Security Group do EFS: efs.
+> ⚠️ **Importante!**
+> 
+> Anote o **ID do File System** gerado após a criação do EFS.
+> 
+> 📝 **Você vai precisar dessa informação no script de inicialização (`UserData`) da sua instância EC2**, para montar o EFS corretamente. 
+> 
+> Exemplo do formato: `fs-12345678`
 
-
+<img src="https://github.com/user-attachments/assets/85b26625-7d94-4311-94dc-8a55290dae86" alt="Image">
