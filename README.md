@@ -24,6 +24,9 @@
 Este projeto tem como objetivo implantar uma aplicação WordPress em uma infraestrutura escalável e segura na AWS, utilizando contêineres Docker ou Containerd, banco de dados gerenciado via RDS, armazenamento compartilhado com EFS e distribuição de tráfego com Load Balancer.
 
 ---
+##  Estrutura do Projeto
+<img src="https://github.com/user-attachments/assets/6476bdfa-b2bb-484a-8030-e5a692b924a2" alt="Image">
+
 ## Ordem das etapas :
 
 ## ✅ Etapas do Projeto
