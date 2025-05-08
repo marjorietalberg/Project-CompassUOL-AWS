@@ -42,7 +42,7 @@ Após selecionar o idioma e clicar em "Continuar":
 
 <img src="https://github.com/user-attachments/assets/14c49801-873c-488c-b095-3eee1c139d71" alt="Image">
 
-<img src="https://github.com/user-attachments/assets/883d35ac-7ab6-409f-92c5-100684851c43" alt="Image">
+
 
 
 ---
