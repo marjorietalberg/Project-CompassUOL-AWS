@@ -94,10 +94,13 @@ Essa ação dará início ao processo de criação de um grupo de escalabilidade
 12. **Clique em Next** para continuar.
 
 <img src="https://github.com/user-attachments/assets/33bc2a57-efb3-4065-a50f-21ed13de87d0" alt="Image">
+<img src="https://github.com/user-attachments/assets/ebdd2080-68e0-4ce6-b960-18b42ccbb134" alt="Image">
+<img src="https://github.com/user-attachments/assets/113f0e4a-c1d6-4828-95ec-6b2195572e3a" alt="Image">
 
 ---
+13. **Marque o checkbox** Enable group metrics collection within CloudWatch
+14. **Clique em Next**
 
-<img src="https://github.com/user-attachments/assets/ebdd2080-68e0-4ce6-b960-18b42ccbb134" alt="Image">
 <img src="https://github.com/user-attachments/assets/cf64d019-6c95-4ef2-927f-b45fbea4a6dd" alt="Image">
 
 
