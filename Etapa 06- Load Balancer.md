@@ -87,7 +87,3 @@ Selecione a subnet pública da us-east-1b para garantir alta disponibilidade.
 <img src="https://github.com/user-attachments/assets/f5144f4a-886b-44aa-a4a8-690308650639" alt="Image">
 
 ---
-<p align="center">
-  <br>
-  <img src="https://github.com/user-attachments/assets/79a2e995-a1be-4192-9ded-771004ef7417" width="350">
-</p>
